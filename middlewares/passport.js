@@ -11,8 +11,9 @@ const opts = {
 const strategy =  new Strategy(opts, async (payload, done) => {
 
 	try{
-		const usuario = await Usuario.findById(payload.id);
-
+		const usuariodata = await Usuario.findById(payload.id);
+		// se extraen los datos necesarios para enviarlos a la data del token
+		const { password, createdAt, updatedAt, ...usuario } = usuariodata.toObject();
 		if (usuario) {
 			return done(null, usuario);
 		}

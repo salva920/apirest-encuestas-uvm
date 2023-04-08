@@ -51,7 +51,7 @@ class Server {
     this.app.use(this.path.auth, require("../routes/auth.routes"));
   }
 
-  // metodo que arranca el servidor
+  // metodo que inicializa el servidor
   listen() {
     this.app.listen(this.port, () => {
       console.log("corriendo en el puerto: " + this.port);
