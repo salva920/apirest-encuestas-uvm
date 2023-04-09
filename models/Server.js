@@ -15,6 +15,7 @@ class Server {
 
     this.path = {
       auth: "/api/auth",
+      usuarios: "/api/usuarios",
     };
     
     this.dataBase();
@@ -49,6 +50,7 @@ class Server {
   // Metodo que establece las rutas al sistema
   routes() {
     this.app.use(this.path.auth, require("../routes/auth.routes"));
+    this.app.use(this.path.usuarios, require("../routes/usuarios.routes"));
   }
 
   // metodo que inicializa el servidor

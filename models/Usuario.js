@@ -41,7 +41,7 @@ const UsuarioSchema = Schema(
     },
     estado: {
       type: Boolean,
-      default: "true",
+      default: true,
     },
   },
   {
@@ -63,16 +63,13 @@ UsuarioSchema.pre("save", async function (next) {
 // funcion para encriptar la nueva contraseña luego de que se edite los datos de un usuario
 UsuarioSchema.pre("findOneAndUpdate", async function (next) {
   const usuario = this._update;
-
-  if (usuario.password) {
+  if (usuario !== undefined && usuario.password) {
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(usuario.password, salt);
     usuario.password = hash;
   } else {
     next();
   }
-
-  next();
 });
 
 // funcion que hace que no se muestre la contraseña en los datos de los usuarios
