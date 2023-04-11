@@ -16,6 +16,7 @@ class Server {
     this.path = {
       auth: "/api/auth",
       usuarios: "/api/usuarios",
+      encuestas: "/api/encuestas",
     };
     
     this.dataBase();
@@ -51,9 +52,10 @@ class Server {
   routes() {
     this.app.use(this.path.auth, require("../routes/auth.routes"));
     this.app.use(this.path.usuarios, require("../routes/usuarios.routes"));
+    this.app.use(this.path.encuestas, require("../routes/encuestas.routes"));
   }
 
-  // metodo que inicializa el servidor
+  // metodo que arranca el servidor
   listen() {
     this.app.listen(this.port, () => {
       console.log("corriendo en el puerto: " + this.port);
