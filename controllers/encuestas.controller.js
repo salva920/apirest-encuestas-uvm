@@ -136,4 +136,5 @@ module.exports = {
   crearEncuesta,
   editarEncuesta,
   borrarEncuesta,
+  crearRespuesta,
 };
